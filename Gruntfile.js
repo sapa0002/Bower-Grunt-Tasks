@@ -1,16 +1,15 @@
 module.exports = function (grunt) {
 
-    // Project configuration.
+
     grunt.initConfig({
-        // Metadata.
+
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
             '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
             '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
             '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
             ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-        // Task configuration.
-        //this will copy out only the min files to the www folder
+
         copy: {
             html: {
                 src: 'index.html',
@@ -75,20 +74,19 @@ module.exports = function (grunt) {
                 }
             }
         },
-        // Deletes all .css files, but skips min.css files
+
         clean: {
             css: ["dist/css/*.css", "!dist/css/*-min.css"],
             js: ["dist/js/*.js", "!dist/js/*.min.js"]
         }
     });
 
-    // These plugins provide necessary tasks.
+
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    // Default task.
     grunt.registerTask('default', ['copy', 'uglify', 'cssmin', 'clean']);
 
 };
